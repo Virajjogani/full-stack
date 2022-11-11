@@ -44,3 +44,24 @@ export const GetsingleHotels = async (req, res, next) => {
     next();
   }
 };
+export const CountBycity = async (req, res, next) => {
+  const cities = req.query.cities.split(",");
+  try {
+    const list = await Promise.all(
+      cities.map((city) => {
+        return Hotel.countDocuments({ city: city });
+      })
+    );
+    res.status(200).send(list);
+  } catch {
+    next();
+  }
+};
+export const CountBytype = async (req, res, next) => {
+  try {
+    const hotels = await Hotel.find(d);
+    res.status(200).send({ hotels, status: 200 });
+  } catch {
+    next();
+  }
+};

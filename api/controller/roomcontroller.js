@@ -14,7 +14,7 @@ export const CreateRoom = async (req, res, next) => {
     } catch (error) {
       next(error);
     }
-    res.status(200).send({ msg: "Rooms Details Added Succesfully" });
+    res.status(200).send({ msg: "Rooms Details Updated Succesfully" });
   } catch (error) {
     next(error);
   }
