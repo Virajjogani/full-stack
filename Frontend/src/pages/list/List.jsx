@@ -2,10 +2,11 @@ import "./list.css";
 import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/header/Header";
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import SearchItem from "../../components/searchItem/SearchItem";
+import axios from "axios";
 
 const List = () => {
   const location = useLocation();
@@ -13,6 +14,22 @@ const List = () => {
   const [date, setDate] = useState(location.state.date);
   const [openDate, setOpenDate] = useState(false);
   const [options, setOptions] = useState(location.state.options);
+  const [HotelData, setHotelData] = useState();
+  console.log("🚀 ~ file: List.jsx ~ line 18 ~ List ~ HotelData", HotelData);
+
+  const getHotellist = () => {
+    axios
+      .get(
+        `https://hotelbookingapp-api.herokuapp.com/api/hotel/getallhotels?city=${destination}`
+      )
+      .then((res) => {
+        setHotelData(res.data);
+      });
+  };
+
+  useEffect(() => {
+    getHotellist();
+  }, []);
 
   return (
     <div>
@@ -101,15 +118,9 @@ const List = () => {
             <button>Search</button>
           </div>
           <div className="listResult">
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
+            {HotelData?.hotels?.map((item) => {
+              return <SearchItem item={item} key={item._id} />;
+            })}
           </div>
         </div>
       </div>
