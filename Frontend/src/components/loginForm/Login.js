@@ -24,6 +24,9 @@ function Login() {
                 const token = res.data.token
                 sessionStorage.setItem("token", token)
             }
+            else if (res.status === 400) {
+                toast.error("Something Went Wrong Please try again")
+            }
         })
     }
 
@@ -69,7 +72,6 @@ function Login() {
                                 <input
                                     className="form-check-input"
                                     type="checkbox"
-                                    required
                                     id="form2Example31"
                                 />
                                 <label className="form-check-label" htmlFor="form2Example31">
