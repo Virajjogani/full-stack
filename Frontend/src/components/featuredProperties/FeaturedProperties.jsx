@@ -30,8 +30,16 @@ const FeaturedProperties = () => {
         {FeaturedData?.hotels?.map((item) => {
           return (
             <div className="fpItem">
-              <img src={item.images} alt="" className="fpImg" />
-              <span className="fpName">{item.name}</span>
+              <img
+                src={`https://hotelbookingapp-api.herokuapp.com/image/${item.images[0]} `}
+                alt=""
+                className="fpImg"
+              />
+              {console.log(
+                "🚀 ~ file: FeaturedProperties.jsx ~ line 35 ~ {FeaturedData?.hotels?.map ~ item.images[0]",
+                item.images[0]
+              )}
+              <span className="fpName">{item.name.slice(0, 70) + "...."}</span>
               <span className="fpCity">{item.city}</span>
               <span className="fpPrice">
                 Starting from {item.cheapestprice}

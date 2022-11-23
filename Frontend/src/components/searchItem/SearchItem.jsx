@@ -5,7 +5,7 @@ import "./searchItem.css";
 const SearchItem = ({ item }) => {
   return (
     <div className="searchItem">
-      <img src={item.image} alt="" className="siImg" />
+      <img src={`https://hotelbookingapp-api.herokuapp.com/image/${item.images[0]} `} alt="" className="siImg" />
       <div className="siDesc">
         <h1 className="siTitle">{item.title}</h1>
         <span className="siDistance">{item.distance}</span>
