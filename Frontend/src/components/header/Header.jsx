@@ -89,10 +89,11 @@ const Header = ({ type }) => {
             <div className="headerSearch">
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faBed} className="headerIcon" />
-                <input  
+                <input
                   type="text"
                   placeholder="Where are you going?"
                   className="headerSearchInput"
+                  required
                   onChange={(e) => setDestination(e.target.value)}
                 />
               </div>
@@ -111,10 +112,11 @@ const Header = ({ type }) => {
                     onChange={(item) => setDate([item.selection])}
                     moveRangeOnFirstSelection={false}
                     ranges={date}
-                    className="date"
+                    className="date"  
                     minDate={new Date()}
+                    required
                   />
-                )}
+                )}      
               </div>
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faPerson} className="headerIcon" />
